@@ -7,8 +7,12 @@ I decided to make a simulator of this kind, but in HTML.
 ## Warning
 Some aspects arn't finilized, also, there's still some bugs.
 
+## Demo
+http://lucas.franceschino.fr/static/simu_archi
+
 ## Contact
 If you think it could be useful or something, but somestuff doesn't work well, or you want more info, or anything, email me, I'll be glad to help!
+
 
 # (fr) Simulateur-Architecture
 Simulateur d'architecture d'ordinateur basique
