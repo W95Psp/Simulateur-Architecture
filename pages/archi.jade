@@ -1,0 +1,74 @@
+doctype html
+html(ng-app='archiApp')
+  head
+    include ../header.jade
+    link(href='../styles/archi.css', rel="stylesheet", type="text/css")
+    script(src='../scripts/page_archi.js')
+  body(ng-controller='Ctrl', ng-init='countReg = 0')
+    svg(width='340', height='520', style='position: relative; top:20px; left: -30px;')
+      defs
+        marker#endmarker(markerwidth='6', markerheight='4', refx='6', refy='2', orient='auto')
+          polyline(points='0,0 6,2 0,4')
+      // Pour chaque module de registre
+      g.registre(ng-init='y = r.index*config.interModule', transform='translate({{config.initPosition[0]}}, {{y+config.initPosition[1]}})', ng-repeat='(k,r) in archi.registres')
+        // Trait de liaison de gauche
+        path.firstPart(ng-init='countReg++;', state='{{r.index | busColor : 1}}', d='M 0,0 L 0,{{config.interModule}}')
+        // Flèche vers module rectangle
+        path.arrow.firstPart(state='{{r.isUsed[0]}}', d='M 0,0 L {{config.firstPartLength}},0')
+        g(transform='translate({{config.firstPartLength}}, 0)')
+          // Rectangle gris
+          g(transform='translate(0, 0)')
+            rect(x='0', y='-{{config.moduleHeight/2}}', state='{{r.isUsed[0] || r.isUsed[1] || r.isUsed[2]}}', width='{{config.moduleLength}}', height='{{config.moduleHeight}}')
+            rect(x='50', y='-{{config.moduleHeight/2}}', width='1', height='{{config.moduleHeight}}', style='opacity: 0.2;')
+            // Nom du registre
+            text(x='25', y='5') {{k}}
+            // Valeur actuelle du registre
+            text(x='90', y='5')
+              | {{r.currentValue | set8num}}
+          // Bloc de connection avec l'opérateur combinatoire (flêches de droites & cercles)
+          g(ng-if='r.index!=0', transform='translate({{config.moduleLength}}, 0)', ng-init='s = config.outSep')
+            path.arrow.middlePart(state='{{r.isUsed[1] || r.isUsed[2]}}', d='M 0,0 L 20,0')
+            path.middlePart(state='{{r.isUsed[1]}}', d='M 20,0 L 20,{{-s}}')
+            path.middlePart(state='{{r.isUsed[2]}}', d='M 20,0 L 20,{{s}}')
+            g(transform='translate(20, 0)')
+              g(ng-if='r.index%2==0')
+                path.arrow.middlePart(state='{{r.isUsed[1]}}', d='M 0,-{{s}} L 42,-{{s}}')
+                path.arrow.middlePart(state='{{r.isUsed[2]}}', d='M 0,{{s}} L 42,{{s}}')
+                circle(state='{{r.isUsed[1]}}', cx='50', cy='-{{s}}', r='8')
+                circle(state='{{r.isUsed[2]}}', cx='50', cy='{{s}}', r='8')
+                path.lastPart(state='{{r.isUsed[1]}}', d='M 58,-{{s}} L 70,-{{s}}')
+                path.lastPart(stroke-dasharray='5,5', state='{{r.isUsed[2]}}', d='M 58,{{s}} L 90,{{s}}')
+              g(ng-if='r.index%2==1')
+                path.arrow.middlePart(state='{{r.isUsed[1]}}', d='M 0,-{{s}} L 19,-{{s}}')
+                path.arrow.middlePart(state='{{r.isUsed[2]}}', d='M 0,{{s}} L 19,{{s}}')
+                circle(state='{{r.isUsed[1]}}', cx='27', cy='-{{s}}', r='8')
+                circle(state='{{r.isUsed[2]}}', cx='27', cy='{{s}}', r='8')
+                path.lastPart(state='{{r.isUsed[1]}}', d='M 35,-{{s}} L 70,-{{s}}')
+                path.lastPart(stroke-dasharray='5,5', state='{{r.isUsed[2]}}', d='M 35,{{s}} L 90,{{s}}')
+              path.lastPart.final(state='{{r.index | busColor : 2}}', d='M 70,-{{s}} L 70,{{config.interModule-s}}')
+              path.lastPart.final(state='{{r.index | busColor : 3}}', d='M 90,{{s}} L 90,{{config.interModule+s}}')
+      g(transform='translate({{config.initPosition[0]}}, {{config.initPosition[1]}})', ng-init='centerModule = config.firstPartLength+config.moduleLength/2')
+        path(stroke-dasharray='3,3', d='M {{centerModule}},{{-config.moduleHeight/2}} L 165,-20', state='')
+        g(transform='translate(0, 0)', ng-init='nn = config.firstPartLength + config.moduleLength')
+          rect(x='165', y='-45', width='120', height='50')
+          text.memTitle(x='225', y='-28') Mémoire (eM/sM)
+          text.memIt(x='225', y='-13') Programme et
+          text.memIt(x='225', y='-1') données
+          path.arrow(d='M 225,20 L 225,5', state='')
+          path(d='M {{nn+8}},{{config.moduleHeight - config.moduleHeight/4}} L 225,20', state='')
+          path(d='M {{centerModule}},{{config.moduleHeight - config.moduleHeight/4}} L {{nn+8}},{{config.moduleHeight - config.moduleHeight/4}}', state='')
+          path.arrow(d='M {{centerModule}},{{config.moduleHeight - config.moduleHeight/4}} L {{centerModule}},{{config.moduleHeight}}', state='')
+        // De l'opérateur combinatoire
+        g(transform='translate(0, {{countThat(archi.registres)*config.interModule}})', ng-init='xDec = config.firstPartLength+config.moduleLength+config.outSep+70+10')
+          path.arrow(d='M {{xDec}},{{-config.outSep}} L 220, 22', state='{{isCalcUsed()}}')
+          path.arrow(d='M {{xDec+20}},{{config.outSep}} L 220, 42', state='{{isCalcUsed()}}')
+          path.arrow(d='M 80,32 L 0, 0', state='{{isCalcUsed()}}')
+          rect(x='80', y='7', height='50', width='140')
+          text.opTitle(x='230', y='32') X
+          text.opTitle(x='230', y='57') Y
+          text.opTitle(x='70', y='47') S
+          text.opTitle(x='150', y='77') Opérateur combinatoire
+          g(ng-repeat='(n,c) in archi.calcs', ng-init='y = c.index * 12', transform='translate(0, 18)')
+            text.opInst(state='{{c.isUsed}}', x='86', y='{{y}}') Ope = {{n}}
+            text.opDesc(state='{{c.isUsed}}', x='160', y='{{y}}') {{c.desc}}
+    button(style='position: absolute; top: 10px; left: 10px;', ng-click='archi.reset();') Réinitialiser

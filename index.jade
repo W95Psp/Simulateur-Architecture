@@ -1,0 +1,21 @@
+doctype html
+html(ng-app='archiApp')
+  head
+    include ./header.jade
+    meta(charset='UTF-8')
+    link(href='styles/index.css', rel='stylesheet', type='text/css')
+    script(src='scripts/Architecture.js')
+    script(src='scripts/Sequenceur.js')
+    script(src='scripts/index.js')
+    title Architecture
+  body(ng-controller='Ctrl')
+    #header
+      | Simulateur d'architecture
+      span
+        | Codé par 
+        a(href='http://lucas.franceschino.fr') Lucas Franceschino
+    #content
+      div(ng-repeat='homeCategory in homeCategories')
+        h1 {{homeCategory.name}}
+        .button.my-special-animation(ng-click='clickButton(button);', state='{{button.open}}', style='background-image: url("images/{{button.img}}");', ng-repeat='button in homeCategory.buttons')
+          | {{button.name}}

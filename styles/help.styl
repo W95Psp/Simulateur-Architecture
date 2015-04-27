@@ -1,0 +1,76 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	ovesrflow: hidden;
+	font-family: 'Roboto';
+	font-weight: 300;
+}
+#header{
+	background-image: url('../images/help_big.png');
+	background-position: 10px center;
+	background-repeat: no-repeat;
+	background-color: #ecf0f1;
+	margin: 0px;
+	padding: 20px;
+	font-size: 250%;
+	padding-left: 80px;
+	position: relative;
+	z-index: 10;
+	box-shadow: 0px 4px 4px rgba(0,0,0,0.1);
+	height: 36px;
+}
+#menu{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	z-index: 0;
+	width: 140px;
+	background-color: #1abc9c;
+	box-shadow: 2px 0px 4px rgba(0,0,0,0.1);
+}
+#menu ul{
+	padding: 0px;
+	padding-top: 80px;
+}
+#menu ul li{
+	list-style-type: none;
+	padding: 7px;
+	text-align: center;
+	margin-bottom: 5px;
+	background-color: rgba(0,0,0,0);
+	-webkit-transition: box-shadow 400ms ease-out;
+}
+#menu ul li[state=true]{
+	-webkit-transition: box-shadow 500ms ease-in;
+	background-color: rgba(22, 160, 133,0.5);
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.16) inset;
+}
+#menu ul li:active{
+	-webkit-transition: none;
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.5) inset!important;
+}
+#menu ul li[state=false]:hover{
+	-webkit-transition: box-shadow 200ms ease-in;
+	background-color: rgba(22, 160, 133,0.1);
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.16) inset;
+}
+.content{
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+	overflow: hidden;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	text-align: justify;
+	margin-left: 140px;
+	margin-top: 76px;
+	padding: 10px;
+}
+.content[state=true]{
+	visibility: visible;
+	width: auto;
+	height: auto;
+	overflow: auto;
+}

@@ -1,0 +1,104 @@
+doctype html
+html(ng-app='archiApp')
+  head
+    include ../header.jade
+    link(href='../styles/seq.css', rel='stylesheet', type='text/css')
+    title Séquenceur
+    script(src='../angular.js')
+    script(src='../scripts/page_seq.js')
+  body(ng-controller='Ctrl')
+    div(ng-init='seqMode=2;', style='margin: 8px;')
+      | Mode :
+      select(ng-model='seqMode', onclick='if(!SC.seqModeState)return false;')
+        option(value='1') Pas à pas
+        option(value='2', selected='') Phase par phase
+        option(value='3') Instruction par instruction
+        option(value='4') Automatique
+      button(ng-show='seqMode!=1', onclick='doThings();')
+        span(ng-if='seqMode=="2"')
+          | Exécuter une phase
+        span(ng-if='seqMode=="3"')
+          | Exécuter une instruction
+        span(ng-if='seqMode=="4"')
+          span(ng-if='!seqModeState')
+            | Automatique
+          span(ng-if='seqModeState')
+            | Arrêter
+      span(ng-if='seqMode=="1"')
+        button(ng-click='doThings();', ng-disabled='(seqModeState==2 || seqModeState==3)') eRAMM
+        button(ng-click='doThings();', ng-disabled='seqModeState!=2') eREMM
+        button(ng-click='doThings();', ng-disabled='seqModeState!=3') Mise en forme des impulsions
+      button(style='float: right;', onclick='resetSeq();')
+        | Réinitialiser
+    div
+      svg(width='430', height='200', style='position: relative; top:20px; left: 0px;')
+        defs
+          marker#endmarker(markerwidth='6', markerheight='4', refx='6', refy='2', orient='auto')
+            polyline(points='0,0 6,2 0,4')
+        g(transform='translate(0,-800)')
+          path(d='m 430,115 -50,0', transform='translate(0,752.36215)', state='{{seq.useWires[12]}}')
+          path(d='m 115,55 -100,0 0,50 15,0', transform='translate(0,752.36215)', state='{{seq.useWires[1]}}')
+          path(d='m 70,110 60,0', transform='translate(0,752.36215)', state='{{seq.useWires[4]}}')
+          path(d='m 130,125 -50,0 0,35', transform='translate(0,752.36215)', state='{{seq.useWires[13]}}')
+          path(d='m 30,120 -15,0 0,105 100,0', transform='translate(0,752.36215)', state='{{seq.useWires[5]}}')
+          path(d='m 165,110 75,0', transform='translate(0,752.36215)', state='{{seq.useWires[10]}}')
+          path(d='m 190,160 0,-35 50,0', transform='translate(0,752.36215)', state='{{seq.useWires[9]}}')
+          path(d='m 275,115 35,0', transform='translate(0,752.36215)', state='{{seq.useWires[11]}}')
+          text(x='345', y='827.36212') Registre Adresse de
+          text(x='345', y='838.61212') la mémoire de
+          text(x='345', y='849.86212') microprorammation
+          rect#Aig3(width='40', height='40', x='30', y='90', transform='translate(0,752.36215)')
+          rect#Aig2(width='35', height='75', x='130', y='80', transform='translate(0,752.36215)')
+          rect#Aig1(width='35', height='37.020306', x='240', y='852.36212')
+          rect#addr(width='70', height='15', x='310', y='105', transform='translate(0,752.36215)', onclick='SC.seq.addr = prompt("?", SC.seq.addr);SC.$apply();')
+          path(d='m 435,240 -290,0 0,-85', transform='translate(0,752.36215)', state='{{seq.useWires[7]}}')
+          path(d='m 295,175 -40,0 0,-40', transform='translate(0,752.36215)', state='{{seq.useWires[8]}}')
+          rect#phase(width='25', height='20', x='295', y='165', transform='translate(0,752.36215)', onclick='SC.seq.phase = parseInt(prompt("?", SC.seq.phase));SC.$apply();')
+          rect#fetch(width='35', height='15', x='175', y='160', transform='translate(0,752.36215)', onclick='SC.seq.addrDebutFetch = parseInt(prompt("?", SC.seq.addrDebutFetch));SC.$apply();')
+          rect#SelMS(width='40', height='15', x='125', y='180', transform='translate(0,752.36215)')
+          rect#COP_MA(width='45', height='15', x='60', y='160', transform='translate(0,752.36215)', onclick='SC.seq.COP_MA = parseInt(prompt("?", SC.seq.COP_MA));SC.$apply();')
+          text#Cond.no-center(x='25', y='827.36212') Condition: 0
+          text#CondT_F.no-center(x='37', y='837.36212') False
+          text.no-center(x='40', y='892') Aig3
+          text.no-center(x='140', y='827') Aig2
+          text.no-center(x='248', y='844') Aig1
+          text(x='192.01709', y='937.36212') Adresse
+          text(x='192.01709', y='948.61212') de début
+          text(x='192.01709', y='959.86212') du fetch
+          text.no-center(x='64', y='937.36212') COP MA
+          rect#isPh1(width='25', height='20', x='243.83755', y='917.6134')
+          text.no-center(x='235', y='947.36212') Phase=1?
+          path(d='m 130,150 -15,0 0,75', transform='translate(0,752.36215)', state='{{seq.useWires[14]}}')
+          path(d='m 115,225 320,0', transform='translate(0,752.36215)', state='{{seq.useWires[6]}}')
+          path(d='m 405,115 0,-60 -290,0', transform='translate(0,752.36215)', state='{{seq.useWires[2]}}')
+          path(d='m 130,90 -15,0 0,-35', transform='translate(0,752.36215)', state='{{seq.useWires[3]}}')
+          text(x='40', y='859.36212') 0
+          text(x='40', y='875.36212') 1
+          text(x='137', y='845.36212') 1
+          text(x='137', y='863.36212') 2
+          text(x='137', y='881.36212') 3
+          text(x='137', y='899.36212') 4
+          text(x='250', y='865.36212') 0
+          text(x='250', y='881.36212') 1
+          text(x='345', y='869.36212') {{seq.addr | set4num}}
+          text(x='306.95337', y='930.36212') {{seq.phase}}
+          text(x='255.95337', y='931.36212') {{(seq.phase==1)?1:0}}
+          text(x='191.95337', y='923.36212') {{seq.addrDebutFetch | set4num}}
+          text(x='145.06616', y='943.36212') {{seq.instruct.SelMS | set4num}}
+          text(x='80.066162', y='923.36212') {{seq.COP_MA | set4num}}
+      div(style='display: inline-block;')
+        | Afficher à partir de la ligne : 
+        input(ng-model='dispFromAddr', type='number', style='size: 50px;')
+        div(style='width: 400px; height: 150px; overflow: scroll; overflow-y: hidden;')
+          table.table.table-striped.table-header-rotated(style='position: relative; top: -80px;')
+            thead
+              tr
+                th
+                th.rotate-45(ng-repeat='v in things')
+                  div
+                    span {{v}}
+            tbody#tabWrite
+              tr(ng-repeat='(addr, item) in seq.mem | filter:just5Addr | limitTo: 6')
+                td.editButton(ng-click='modify(item);')
+                td(ng-repeat='v in things', sbold='{{item[v]?true:false}}', ng-click='mod(item, v);') {{item[v]?item[v]:0 | number}}
+        div(style='font-size: 60%; text-align: center;') {{readCurrentInstruct()}}

@@ -1,0 +1,25 @@
+<!DOCTYPE html><html ng-app="archiApp"><head><link href="http://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet" type="text/css"><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script><script src="../scripts/modifySeq.js"></script><style>body{
+margin: 0px;
+padding: 0px;
+ovesrflow: hidden;
+font-family: 'Roboto';
+font-weight: 300;
+}
+.word[correct=true]{
+border: 1px solid green;
+color: #040;
+}
+.word{
+font-family: Arial;
+display: inline-block;
+border: 1px solid red;
+padding: 2px;
+margin: 2px;
+color: #400;
+}
+.prop{
+cursor: default;
+}
+.prop:hover{
+color: black;
+}</style></head><body ng-controller="Ctrl" style="margin: 10px;"><h1>Adresse : {{item["Adresse"]}}</h1>		SelMS : <select type="text" ng-model="item[&quot;SelMS&quot;]"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select><span style="margin-left: 30px;">Adresse Suivante :</span><input type="text" ng-model="item[&quot;AdrSuiv&quot;]"><br><br><input id="sig" ng-change="p=(text|parser)" ng-model="text" style="width: 500px;"><br><span style="display: block; height: 20px; width: 500px; font-size: 70%; font-family: Arial; font-style: italic; color: #AAA;">Propositions : <span ng-repeat="signal in signals | filter:writing" ng-click="signal | correct" class="prop">{{signal}}</span></span><br><br>		Signaux détectés : <span ng-repeat="(k, word) in p" correct="{{word.valid}}" class="word">{{word.content}}<img ng-if="!word.valid" ng-click="k | delete" src="../images/Delete-16.png"></span><br><br><button onclick="SAVE();">Enregistrer</button></body></html>

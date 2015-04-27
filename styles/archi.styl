@@ -1,0 +1,55 @@
+body
+	margin 0px
+	padding 0px
+	overflow hidden
+
+path, circle, rect
+	stroke gray
+	fill #DDD
+	stroke-width 1
+
+.arrow
+	marker-end url(#endmarker)
+
+.registre *[state=true]
+	stroke red
+
+path[state=true]
+	transition all 200ms ease-in
+	stroke red
+	stroke-width 2
+
+text[state=true]
+	fill rgb(255, 0, 0)
+	stroke rgba(255, 0, 0, 0.5)
+
+text
+	font-family 'Roboto'
+	font-weight 300
+	font-size 12px
+	text-anchor middle
+.opTitle
+	font-weight bold!important
+	font-size 16px!important
+
+.registre text:nth-child(2n)
+	font-weight bold
+	font-size 16px
+
+.registre text:nth-child(2n+1):hover
+	font-weight: bold!important
+
+.opInst, .opDesc
+	text-anchor start!important
+	font-size 10px!important
+	font-weight bold!important
+
+.memTitle
+	text-anchor center!important
+	font-size 14px!important
+	font-weight bold!important
+
+.memIt
+	text-anchor center!important
+	font-size 13px!important
+	font-weight normal!important

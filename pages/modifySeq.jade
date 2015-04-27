@@ -1,0 +1,58 @@
+doctype html
+html(ng-app='archiApp')
+  head
+    include ../header
+    script(src='../scripts/modifySeq.js')
+    style.
+      body{
+      margin: 0px;
+      padding: 0px;
+      ovesrflow: hidden;
+      font-family: 'Roboto';
+      font-weight: 300;
+      }
+      .word[correct=true]{
+      border: 1px solid green;
+      color: #040;
+      }
+      .word{
+      font-family: Arial;
+      display: inline-block;
+      border: 1px solid red;
+      padding: 2px;
+      margin: 2px;
+      color: #400;
+      }
+      .prop{
+      cursor: default;
+      }
+      .prop:hover{
+      color: black;
+      }
+  body(ng-controller='Ctrl', style='margin: 10px;')
+    h1 Adresse : {{item["Adresse"]}}
+    | 		SelMS : 
+    select(type='text', ng-model='item["SelMS"]')
+      option(value='1') 1
+      option(value='2') 2
+      option(value='3') 3
+      option(value='4') 4
+    span(style='margin-left: 30px;') Adresse Suivante :
+    input(type='text', ng-model='item["AdrSuiv"]')
+    br
+    br
+    input#sig(ng-change='p=(text|parser)', ng-model='text', style='width: 500px;')
+    br
+    span(style='display: block; height: 20px; width: 500px; font-size: 70%; font-family: Arial; font-style: italic; color: #AAA;')
+      | Propositions : 
+      span.prop(ng-repeat='signal in signals | filter:writing', ng-click='signal | correct')
+        | {{signal}}
+    br
+    br
+    | 		Signaux détectés : 
+    span.word(ng-repeat='(k, word) in p', correct='{{word.valid}}')
+      | {{word.content}}
+      img(ng-if='!word.valid', ng-click='k | delete', src='../images/Delete-16.png')
+    br
+    br
+    button(onclick='SAVE();') Enregistrer

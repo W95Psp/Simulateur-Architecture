@@ -1,0 +1,111 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  ovesrflow: hidden;
+  font-family: 'Roboto';
+  font-weight: 300;
+}
+circle,
+rect {
+  stroke: #808080;
+  fill: #ddd;
+  stroke-width: 1;
+}
+path[state=true] {
+  transition: all 100ms ease-in;
+  stroke: #f00;
+  stroke-width: 2;
+}
+path {
+  transition: all 100ms ease-in;
+  stroke: #808080;
+  fill: transparent;
+  stroke-width: 1;
+}
+.arrow {
+  marker-end: url("#endmarker");
+}
+text {
+  font-family: 'Roboto';
+  font-weight: 300;
+  text-anchor: middle;
+  font-size: 9px;
+  font-weight: bold;
+}
+text.no-center {
+  text-anchor: start;
+}
+table {
+  font-family: 'Roboto';
+  font-weight: 300;
+  margin-top: 80px;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+table td,
+table th {
+  margin: 0px;
+  padding: 0px;
+}
+table td {
+  border: 1px solid #808080;
+}
+table > tbody > * > *:nth-child(2n),
+table > thead > * > *:nth-child(2n) > div {
+  background-color: #ddd;
+}
+td[sbold=true] {
+  font-weight: bold;
+}
+.table-header-rotated th.row-header {
+  width: auto;
+}
+.table-header-rotated td {
+  width: 14px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  vertical-align: middle;
+  text-align: center;
+}
+.table-header-rotated th.rotate-45 {
+  height: 40px;
+  width: 14px;
+  min-width: 20px;
+  max-width: 20px;
+  position: relative;
+  vertical-align: top;
+  padding: 0;
+}
+.table-header-rotated th.rotate-45 > div {
+  position: relative;
+  top: 0px;
+  left: 20px; /* 80 * tan(45) / 2 = 40 where 80 is the height on the cell and 45 is the transform angle*/
+  height: 100%;
+  -webkit-transform: skew(-45deg, 0deg);
+  overflow: hidden;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+.editButton {
+  background-image: url("../images/pencil43.png");
+  width: 16px;
+  display: block;
+  height: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+}
+.editButton:hover {
+  opacity: 1;
+}
+.table-header-rotated th.rotate-45 span {
+  -webkit-transform: skew(45deg, 0deg) rotate(315deg);
+  position: absolute;
+  bottom: 16px; /* 40 cos(45) = 28 with an additional 2px margin*/
+  left: -11px; /*Because it looked good, but there is probably a mathematical link here as well*/
+  display: inline-block;
+  width: 42px; /* 80 / cos(45) - 40 cos (45) = 85 where 80 is the height of the cell, 40 the width of the cell and 45 the transform angle*/
+  text-align: left;
+}

@@ -1,0 +1,41 @@
+doctype html
+html(ng-app='archiApp')
+  head
+    include ../header.jade
+    link(href='../styles/help.css', rel='stylesheet', type='text/css')
+    title Séquenceur
+    meta(http-equiv='content-type', content='text/html; charset=utf-8')
+    
+    script.
+      var archiApp = angular.module('archiApp', []);
+      var SC;
+      archiApp.controller('Ctrl', function($scope){
+      SC = $scope;
+      });
+  body(ng-controller='Ctrl')
+    #header Aide
+    #menu(ng-init='selected = 1')
+      ul
+        li(state='{{selected==1}}', ng-click='selected = 1') Architecture
+        li(state='{{selected==2}}', ng-click='selected = 2') Séquenceur
+        li(state='{{selected==3}}', ng-click='selected = 3') Mémoire
+        li(state='{{selected==4}}', ng-click='selected = 4') Pile
+        li(state='{{selected==5}}', ng-click='selected = 5') A propos
+    .content(state='{{selected==1}}')
+      h1 Architecture
+      | 			Lorem ipsum Aute adipisicing reprehenderit dolore cillum amet occaecat quis incididunt fugiat ullamco dolore laboris consectetur dolor amet officia ut fugiat quis in ut amet nulla eiusmod fugiat minim eiusmod quis sit mollit aliqua veniam laborum dolor esse dolor venia1111111 11111111111111eniam mollit in elit officia occaecat eu magna occaecat sit ut sit incididunt cupidatat sunt dolore non labore exercitation qui exercitation culpa voluptate et incididunt.
+    .content(state='{{selected==2}}')
+      h1 Séquenceur
+      | 			Lorem ipsum Aute adipisicing reprehenderit dolore cillum amet occaecat quis incididunt fugiat ullamco dolore laboris consectetur dolor amet officia ut fugiat quis 222 2 2 22222222222222222 22222222222222222222 2222222222222222222222222222 222222222222 2222222222222non anim non aute voluptate ut veniam mollit in elit officia occaecat eu magna occaecat sit ut sit incididunt cupidatat sunt dolore non labore exercitation qui exercitation culpa voluptate et incididunt.
+    .content(state='{{selected==3}}')
+      h1 Mémoire
+      | 			Lorem ipsum Aute adipisicing reprehenderit dolore cillum amet occaecat quis incididunt fugiat ullamco dolore laboris consectetur dolor amet officia ut fugiat qui333333333333333333333333333333333333333 33333333333333333333333 eu magna occaecat sit ut sit incididunt cupidatat sunt dolore non labore exercitation qui exercitation culpa voluptate et incididunt.
+    .content(state='{{selected==4}}')
+      h1 Pile
+      | 			Lorem ipsum Aute adipisicing reprehenderit dolore cillum amet occaecat quis incididunt fugiat ullamco dolore44444444444444''
+    .content(state='{{selected==5}}')
+      h1 A propos
+      p
+        | Simulateur développé par Lucas FRANCESCHINO en juin 2014. Site web : 
+        a(href='http://lucas.franceschino.fr/') http://lucas.franceschino.fr/
+        | .
