@@ -1,3 +1,6 @@
+<!--- en title: Architecture simulator  -->
+<!--- fr title: Simulateur d'architecture  -->
+
 # (en) Architecture simulator
 ## Sum up
 <!--- en -->
