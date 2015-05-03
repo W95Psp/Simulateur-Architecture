@@ -1,19 +1,19 @@
 # (en) Architecture simulator
 ## Sum up
 <!--- en -->
-First years in the sciences faculty of University Montpellier have a subject: Architecture of computers. We basicly study how a computer works, materially. For practical works, we was using a software simulator developped by third years students few years ago.
+The first years in the sciences faculty of University Montpellier have a subject: Architecture of computers. We basicly study how a computer works, materially. For practical works, we used a software simulator developped by third years students a few years ago.
 
 I decided to make a simulator of this kind, but in HTML.
 <!--- /en -->
 
 ## Warning
-Some aspects arn't finilized, also, there's still some bugs.
+Some aspects aren't finilized, consequently, there's still some bugs.
 
 ## Demo
 http://lucas.franceschino.fr/static/simu_archi
 
 ## Contact
-If you think it could be useful or something, but somestuff doesn't work well, or you want more info, or anything, email me, I'll be glad to help!
+If you think it could be useful or something, but somestuff doesn't work well, or you want more info, or anything, email me, I'd be glad to help you!
 
 
 # (fr) Simulateur-Architecture
