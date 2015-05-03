@@ -1,8 +1,10 @@
 # (en) Architecture simulator
 ## Sum up
-First years in the sciences faculty of University Montpellier have a subject : Architecture of computers. We basicly study how a computer works, materially. For practical works, we was using a software simulator developped by third years students few years ago.
+<!--- en -->
+First years in the sciences faculty of University Montpellier have a subject: Architecture of computers. We basicly study how a computer works, materially. For practical works, we was using a software simulator developped by third years students few years ago.
 
 I decided to make a simulator of this kind, but in HTML.
+<!--- /en -->
 
 ## Warning
 Some aspects arn't finilized, also, there's still some bugs.
@@ -18,9 +20,11 @@ If you think it could be useful or something, but somestuff doesn't work well, o
 Simulateur d'architecture d'ordinateur basique
 
 ## Résumé
+<!--- fr -->
 Dans le cadre d'une Unité d'Ensignement (UE) à la faculté des sciences de l'Université de Montpellier, en première année, nous avons étudié le fonctionnement d'une architucture d'ordinateur basique. Pour les travaux pratiques, nous utilisions un simulateur en client lourd développé il y a quelques années par des étudiants de troisième année.
 
 J'ai décidé de réaliser un simulateur du même type, mais en HTML.
+<!--- /fr -->
 
 ## Attention
 Certains aspects ne sont pas finalisés, et il reste des bugs.
