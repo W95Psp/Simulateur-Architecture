@@ -24,7 +24,7 @@ Simulateur d'architecture d'ordinateur basique
 
 ## Résumé
 <!--- fr -->
-Dans le cadre d'une Unité d'Ensignement (UE) à la faculté des sciences de l'Université de Montpellier, en première année, nous avons étudié le fonctionnement d'une architucture d'ordinateur basique. Pour les travaux pratiques, nous utilisions un simulateur en client lourd développé il y a quelques années par des étudiants de troisième année.
+Dans le cadre d'une Unité d'Enseignement (UE) à la faculté des sciences de l'Université de Montpellier, en première année, nous avons étudié le fonctionnement d'une architucture d'ordinateur basique. Pour les travaux pratiques, nous utilisions un simulateur en client lourd développé il y a quelques années par des étudiants de troisième année.
 
 J'ai décidé de réaliser un simulateur du même type, mais en HTML.
 <!--- /fr -->
