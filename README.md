@@ -13,7 +13,7 @@ I decided to make a simulator of this kind, but in HTML.
 Some aspects aren't finilized, consequently, there's still some bugs.
 
 ## Demo
-http://lucas.franceschino.fr/static/simu_archi
+https://rawgit.com/W95Psp/Simulateur-Architecture/master/index.html
 
 ## Contact
 If you think it could be useful or something, but somestuff doesn't work well, or you want more info, or anything, email me, I'd be glad to help you!
@@ -31,6 +31,9 @@ J'ai décidé de réaliser un simulateur du même type, mais en HTML.
 
 ## Attention
 Certains aspects ne sont pas finalisés, et il reste des bugs.
+
+## Demo
+https://rawgit.com/W95Psp/Simulateur-Architecture/master/index.html
 
 ## Contact
 Si ce simulateur vous est utile de quelque manière que ce soit, mais que quelque chose ne marche pas, ou mal, ou si vous voulez plus d'informations, ou n'importe quoi d'autre, envoyez-moi un email, je serais ravi de vous aider !
